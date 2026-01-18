@@ -323,12 +323,18 @@
   .track iframe{height: 170px;}
 }
 
-    /* 3 photos in About */
+
+/* 3 photos in About — нормальная галерея на ПК */
 .photos3{
   display:grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr;
   gap: 12px;
   margin-top: 10px;
+}
+
+/* первые две фотки сверху 50/50, третья снизу на всю ширину */
+.photos3 .photoBox:nth-child(3){
+  grid-column: 1 / -1;
 }
 
 .photoBox{
@@ -336,24 +342,31 @@
   overflow: hidden;
   border: 1px solid rgba(255,255,255,.12);
   background: rgba(255,255,255,.03);
-  min-height: 210px;
+
+  /* главное: нормальная высота и кадр */
+  aspect-ratio: 4 / 3;
+  min-height: 220px;
 }
 
 .photoBox img{
   width:100%;
   height:100%;
   object-fit: cover;
+  object-position: center 25%;
   display:block;
 }
 
+/* Мобилка: в колонку и крупно */
 @media (max-width: 900px){
   .photos3{
     grid-template-columns: 1fr;
   }
   .photoBox{
-    min-height: 260px;
+    aspect-ratio: 4 / 5;
+    min-height: 320px;
   }
 }
+
 
   </style>
 </head>
