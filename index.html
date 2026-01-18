@@ -19,6 +19,9 @@
       --pad:22px;
       --accent:#7c5cff;
       --accent2:#22c55e;
+
+      /* Единая ширина всех контент-блоков */
+      --glass: 980px;
     }
 
     *{box-sizing:border-box}
@@ -73,6 +76,7 @@
     .brand .txt{min-width:0}
     .brand .name{font-weight:900; line-height:1.1}
     .brand .sub{color:rgba(242,244,255,.70); font-size:12.5px; margin-top:2px}
+
     .nav{
       display:flex; gap:10px; flex-wrap:wrap;
     }
@@ -113,9 +117,7 @@
       background: linear-gradient(135deg, rgba(34,197,94,.90), rgba(34,197,94,.35));
       border-color: rgba(34,197,94,.50);
     }
-    .btn.ghost{
-      background: rgba(255,255,255,.03);
-    }
+    .btn.ghost{ background: rgba(255,255,255,.03); }
     .btn.youtube{
       background: linear-gradient(135deg, rgba(255,60,60,.92), rgba(255,60,60,.35));
       border-color: rgba(255,60,60,.55);
@@ -170,7 +172,7 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       padding: 26px;
-      max-width: 720px;
+      max-width: var(--glass);
     }
     .kicker{
       color: rgba(242,244,255,.78);
@@ -233,7 +235,7 @@
     }
     li{margin: 8px 0}
 
-    /* Video embeds (optional) */
+    /* Video embeds */
     .videoGrid{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -255,6 +257,60 @@
       border:0;
     }
 
+    /* About-me layout: вертикально (Фото -> Подход) */
+    .aboutWrap{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    /* 3 photos in About — галерея: 2 сверху + 1 снизу на всю ширину */
+    .photos3{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .photos3 .photoBox:nth-child(3){
+      grid-column: 1 / -1;
+    }
+    .photoBox{
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      aspect-ratio: 4 / 3;
+      min-height: 240px;
+    }
+    .photoBox img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      object-position: center 25%;
+      display:block;
+    }
+
+    /* Tracks */
+    .tracksGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .track{
+      border-radius: 18px;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+    }
+    .track iframe{
+      width:100%;
+      height: 152px;
+      border:0;
+      display:block;
+    }
+
     /* Mobile: крупнее и чётче */
     @media (max-width: 900px){
       .glass{max-width: 100%; padding: 20px}
@@ -263,6 +319,17 @@
       .col-6, .col-12{grid-column: span 12}
       .section{padding: 86px 0 52px}
       .videoGrid{grid-template-columns: 1fr}
+      .tracksGrid{grid-template-columns: 1fr;}
+      .track iframe{height: 170px;}
+
+      .photos3{grid-template-columns: 1fr;}
+      .photoBox{
+        aspect-ratio: 4 / 5;
+        min-height: 340px;
+      }
+      .photos3 .photoBox:nth-child(3){
+        grid-column: auto;
+      }
     }
 
     /* Footer */
@@ -277,98 +344,6 @@
       align-items:center;
     }
     .small{font-size: 12.5px; color: rgba(242,244,255,.65)}
-
-/* About-me layout: вертикально (Фото -> Подход) */
-.aboutWrap{
-  display:grid;
-  grid-template-columns: 1fr;
-  gap: 14px;
-  margin-top: 14px;
-}
-
-.photo{
-  border-radius: 18px;
-  overflow:hidden;
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.03);
-  min-height: 360px;
-}
-.photo img{
-  width:100%;
-  height:100%;
-  object-fit: cover;
-  display:block;
-}
-.tracksGrid{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 12px;
-}
-.track{
-  border-radius: 18px;
-  overflow:hidden;
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.03);
-}
-.track iframe{
-  width:100%;
-  height: 152px;
-  border:0;
-  display:block;
-}
-@media (max-width: 900px){
-  .aboutWrap{grid-template-columns: 1fr;}
-  .photo{min-height: 300px;}
-  .tracksGrid{grid-template-columns: 1fr;}
-  .track iframe{height: 170px;}
-}
-
-
-/* 3 photos in About — нормальная галерея на ПК */
-.photos3{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 10px;
-}
-
-/* первые две фотки сверху 50/50, третья снизу на всю ширину */
-.photos3 .photoBox:nth-child(3){
-  grid-column: 1 / -1;
-}
-
-.photoBox{
-  border-radius: 18px;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.03);
-
-  /* главное: нормальная высота и кадр */
-  aspect-ratio: 4 / 3;
-  min-height: 220px;
-}
-
-.photoBox img{
-  width:100%;
-  height:100%;
-  object-fit: cover;
-  object-position: center 25%;
-  display:block;
-}
-
-/* Мобилка: в колонку и крупно */
-@media (max-width: 900px){
-  .photos3{
-    grid-template-columns: 1fr;
-  }
-  .photoBox{
-    aspect-ratio: 4 / 5;
-    min-height: 320px;
-  }
-}
-
-
   </style>
 </head>
 
@@ -396,7 +371,7 @@
 
   <!-- HERO -->
   <section id="top" class="section">
-    <div class="bg" style="background-image:url('images/XFWBsB5htli917ZBzRM39HUwWjoAvrB26X8W5flS3IDgnmpPqE2UrnWRq5odGPXLTdOp3CnM3AygfdK9iqqGdFj-.jpg);"></div>
+    <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1510915228340-29c85a43dcfe?auto=format&fit=crop&w=2400&q=80');"></div>
 
     <div class="container content">
       <div class="glass">
@@ -429,133 +404,112 @@
     </div>
   </section>
 
- <!-- ABOUT ME -->
-<section id="aboutme" class="section" style="min-height: 95vh;">
-  <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=2400&q=80'); background-position:center 45%;"></div>
+  <!-- ABOUT ME -->
+  <section id="aboutme" class="section" style="min-height: 95vh;">
+    <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=2400&q=80'); background-position:center 45%;"></div>
 
-  <div class="container content">
-    <div class="glass" style="max-width: 980px;">
-      <h2>Обо мне</h2>
-      <p>
-        Я Игорь. Играю на гитаре <b>с 2000 года</b>: рок, металл, акустика и песни под гитару.
-        У меня большой <b>сценический опыт</b>: ранее играл в группах <b>One Wave</b> и <b>Skeleton &amp; I</b>.
-        Сейчас играю в кавер-группе <b>Blackwork</b>, а также развиваю мой музыкальный интернет-проект <b>After The Void</b>.
-      </p>
+    <div class="container content">
+      <div class="glass">
+        <h2>Обо мне</h2>
+        <p>
+          Я Игорь. Играю на гитаре <b>с 2000 года</b>: рок, металл, акустика и песни под гитару.
+          У меня большой <b>сценический опыт</b>: ранее играл в группах <b>One Wave</b> и <b>Skeleton &amp; I</b>.
+          Сейчас играю в кавер-группе <b>Blackwork</b>, а также развиваю мой музыкальный интернет-проект <b>After The Void</b>.
+        </p>
 
-<div class="aboutWrap">
+        <div class="aboutWrap">
 
-  <!-- ФОТО -->
-  <div class="card">
-    <b>Фото</b>
-    <p class="small" style="margin-top:6px;">Сцена / студия / акустика — любые 3 кадра.</p>
+          <!-- ФОТО -->
+          <div class="card">
+            <b>Фото</b>
+            <p class="small" style="margin-top:6px;">На ПК: 2 фото сверху + 1 снизу, чтобы кадры смотрелись крупно.</p>
 
-    <div class="photos3">
-      <!-- Фото 1 -->
-      <div class="photoBox">
-        <img
-          src="images/TS20250504_194103.JPG"
-          alt="Фото 1 (пример)" />
-      </div>
-
-      <!-- Фото 2 -->
-      <div class="photoBox">
-        <img
-          src="images/k-DrKTgsm2U.jpg"
-          alt="Фото 2 (пример)" />
-      </div>
-
-      <!-- Фото 3 -->
-      <div class="photoBox">
-        <img
-          src="images/XFWBsB5htli917ZBzRM39HUwWjoAvrB26X8W5flS3IDgnmpPqE2UrnWRq5odGPXLTdOp3CnM3AygfdK9iqqGdFj-.jpg"
-          alt="Фото 3 (пример)" />
-      </div>
-    </div>
-  </div>
-
-  <!-- ПОДХОД (под фото) -->
-  <div class="card">
-    <b>Подход к занятиям</b>
-    <ul>
-      <li><b>Техника</b>: постановка, атака, чистота, скорость без зажимов</li>
-      <li><b>Ритм</b>: стабильность под метроном и чувство грува</li>
-      <li><b>Репертуар</b>: рок/металл партии, акустика, песни под гитару</li>
-      <li><b>Теория музыки</b>: на примерах из песен — чтобы понимать, что играешь, и быстрее учить материал</li>
-    </ul>
-
-    <div class="pills" style="margin-top:12px;">
-      <div class="pill">One Wave</div>
-      <div class="pill">Skeleton &amp; I</div>
-      <div class="pill">Blackwork</div>
-      <div class="pill">After The Void</div>
-    </div>
-
-    <div class="btnrow">
-      <a class="btn ghost" href="#students">Ученики играют</a>
-      <a class="btn primary" href="#contact">Записаться</a>
-    </div>
-  </div>
-
-</div>
-
-
-
-      <!-- AFTER THE VOID: треки -->
-      <div class="grid" style="margin-top:14px;">
-        <div class="card col-12">
-          <b>After The Void — треки</b>
-          <p class="small" style="margin-top:6px;">
-            Здесь можно разместить пару треков проекта. Подойдёт Spotify / SoundCloud / Bandcamp / YouTube (embed).
-            Скажи где у тебя релизы — и я подставлю правильные плееры.
-          </p>
-
-          <div class="tracksGrid">
-            <!-- ПЛЕЕР 1 (пример: SoundCloud) -->
-            <div class="track">
-              <!-- ЗАМЕНИ src на свой embed -->
-              <iframe
-                scrolling="no"
-                allow="autoplay"
-                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/308596022&color=%237c5cff&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=true">
-              </iframe>
+            <div class="photos3">
+              <div class="photoBox">
+                <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1600&q=80" alt="Фото 1 (пример)">
+              </div>
+              <div class="photoBox">
+                <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1600&q=80" alt="Фото 2 (пример)">
+              </div>
+              <div class="photoBox">
+                <img src="https://images.unsplash.com/photo-1520975958225-2c7a4f24e5b4?auto=format&fit=crop&w=2000&q=80" alt="Фото 3 (пример)">
+              </div>
             </div>
 
-            <!-- ПЛЕЕР 2 (пример: SoundCloud) -->
-            <div class="track">
-              <!-- ЗАМЕНИ src на свой embed -->
-              <iframe
-                scrolling="no"
-                allow="autoplay"
-                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/308596022&color=%2322c55e&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=true">
-              </iframe>
+            <p class="small" style="margin-top:10px;">
+              Когда зальёшь свои фото в репозиторий (папка <b>images</b>), замени src на: <b>images/имяфайла.jpg</b>.
+            </p>
+          </div>
+
+          <!-- ПОДХОД (под фото) -->
+          <div class="card">
+            <b>Подход к занятиям</b>
+            <ul>
+              <li><b>Техника</b>: постановка, атака, чистота, скорость без зажимов</li>
+              <li><b>Ритм</b>: стабильность под метроном и чувство грува</li>
+              <li><b>Репертуар</b>: рок/металл партии, акустика, песни под гитару</li>
+              <li><b>Теория музыки</b>: на примерах из песен — чтобы понимать, что играешь, и быстрее учить материал</li>
+            </ul>
+
+            <div class="pills" style="margin-top:12px;">
+              <div class="pill">One Wave</div>
+              <div class="pill">Skeleton &amp; I</div>
+              <div class="pill">Blackwork</div>
+              <div class="pill">After The Void</div>
+            </div>
+
+            <div class="btnrow">
+              <a class="btn ghost" href="#students">Ученики играют</a>
+              <a class="btn primary" href="#contact">Записаться</a>
             </div>
           </div>
 
-          <div class="btnrow" style="margin-top:12px;">
-            <!-- ЕСЛИ ХОЧЕШЬ: ссылка на проект -->
-            <a class="btn ghost" href="#" target="_blank" rel="noopener">After The Void (ссылка)</a>
+          <!-- AFTER THE VOID: треки -->
+          <div class="card">
+            <b>After The Void — треки</b>
+            <p class="small" style="margin-top:6px;">
+              Ниже стоят примеры SoundCloud-плееров. Заменишь на свои embed-ссылки (SoundCloud / Bandcamp / Spotify / YouTube).
+            </p>
+
+            <div class="tracksGrid">
+              <div class="track">
+                <iframe
+                  scrolling="no"
+                  allow="autoplay"
+                  src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/308596022&color=%237c5cff&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=true">
+                </iframe>
+              </div>
+              <div class="track">
+                <iframe
+                  scrolling="no"
+                  allow="autoplay"
+                  src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/308596022&color=%2322c55e&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=true">
+                </iframe>
+              </div>
+            </div>
+
+            <div class="btnrow" style="margin-top:12px;">
+              <a class="btn ghost" href="#" target="_blank" rel="noopener">After The Void (ссылка)</a>
+            </div>
           </div>
+
         </div>
       </div>
-
     </div>
-  </div>
-</section>
-
+  </section>
 
   <!-- STUDENTS PLAY -->
   <section id="students" class="section" style="min-height: 95vh;">
     <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1507838153414-b4b713384a76?auto=format&fit=crop&w=2400&q=80'); background-position:center 30%;"></div>
 
     <div class="container content">
-      <div class="glass" style="max-width: 980px;">
+      <div class="glass">
         <h2>Ученики играют</h2>
         <p>
           Здесь — примеры выступлений/разборов/результатов учеников.
           Можно смотреть на YouTube, а на Boosty — дополнительные материалы и подборки.
         </p>
 
-        <!-- OPTIONAL: встроенные видео (можешь удалить блок целиком, если не надо) -->
         <div class="videoGrid">
           <div class="video" aria-label="Видео ученика 1">
             <iframe
@@ -577,7 +531,6 @@
         </div>
 
         <div class="btnrow">
-          <!-- ЗАМЕНИ НА СВОИ ССЫЛКИ -->
           <a class="btn youtube" href="https://www.youtube.com/@YOUR_CHANNEL" target="_blank" rel="noopener">YouTube (ученики играют)</a>
           <a class="btn boosty" href="https://boosty.to/YOUR_BOOSTY" target="_blank" rel="noopener">Boosty</a>
           <a class="btn ghost" href="#contact">Хочу так же</a>
@@ -595,7 +548,7 @@
     <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1525201548942-d8732f6617a0?auto=format&fit=crop&w=2400&q=80'); background-position:center 35%;"></div>
 
     <div class="container content">
-      <div class="glass" style="max-width: 980px;">
+      <div class="glass">
         <h2>Формат занятий</h2>
         <p>Онлайн (Zoom/Meet) или офлайн (укажи город/район). Длительность 45/60 минут.</p>
 
@@ -633,7 +586,7 @@
     <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1513883049090-d0b7439799bf?auto=format&fit=crop&w=2400&q=80'); background-position:center 25%;"></div>
 
     <div class="container content">
-      <div class="glass" style="max-width: 980px;">
+      <div class="glass">
         <h2>Цены и запись</h2>
         <p>Поставь свои цены ниже (сейчас — заглушка).</p>
 
@@ -659,7 +612,6 @@
               Напиши: уровень + цель + 2 песни/группы, которые нравятся — предложу план и формат.
             </p>
             <div class="btnrow">
-              <!-- ЗАМЕНИ ССЫЛКИ НА СВОИ -->
               <a class="btn primary" href="https://t.me/USERNAME" target="_blank" rel="noopener">Telegram</a>
               <a class="btn green" href="https://wa.me/491234567890" target="_blank" rel="noopener">WhatsApp</a>
               <a class="btn ghost" href="#students">Видео учеников</a>
