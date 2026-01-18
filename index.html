@@ -323,7 +323,38 @@
   .track iframe{height: 170px;}
 }
 
-    
+    /* 3 photos in About */
+.photos3{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.photoBox{
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.03);
+  min-height: 210px;
+}
+
+.photoBox img{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  display:block;
+}
+
+@media (max-width: 900px){
+  .photos3{
+    grid-template-columns: 1fr;
+  }
+  .photoBox{
+    min-height: 260px;
+  }
+}
+
   </style>
 </head>
 
@@ -399,16 +430,28 @@
 
       <div class="aboutWrap">
         <!-- Фото -->
-        <div class="card">
-          <b>Фото</b>
-          <p class="small" style="margin-top:6px;">Вставь своё фото (лучше с гитарой / со сцены).</p>
+       <div class="photos3">
+  <!-- Фото 1 -->
+  <div class="photoBox">
+    <img
+      src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1200&q=80"
+      alt="Фото 1 (пример)" />
+  </div>
 
-          <div class="photo" style="margin-top:10px;">
-            <!-- ЗАМЕНИ src НА СВОЮ ФОТОГРАФИЮ -->
-            <img src="https://images.unsplash.com/photo-1520975958225-2c7a4f24e5b4?auto=format&fit=crop&w=1200&q=80"
-                 alt="Игорь с гитарой (пример)" />
-          </div>
-        </div>
+  <!-- Фото 2 -->
+  <div class="photoBox">
+    <img
+      src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1200&q=80"
+      alt="Фото 2 (пример)" />
+  </div>
+
+  <!-- Фото 3 -->
+  <div class="photoBox">
+    <img
+      src="https://images.unsplash.com/photo-1520975958225-2c7a4f24e5b4?auto=format&fit=crop&w=1200&q=80"
+      alt="Фото 3 (пример)" />
+  </div>
+</div>
 
         <!-- Текст + навыки -->
         <div class="card">
