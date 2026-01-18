@@ -445,3 +445,88 @@
 
         <div class="grid">
           <div class="card col-6">
+            <b>Структура урока</b>
+            <ul>
+              <li>Разминка и настройка (5 минут)</li>
+              <li>Техника/ритм (15–20 минут)</li>
+              <li>Песня/партия (15–25 минут)</li>
+              <li>Домашнее задание + план (5 минут)</li>
+            </ul>
+          </div>
+          <div class="card col-6">
+            <b>Что потребуется</b>
+            <ul>
+              <li>Гитара (электро/акустика)</li>
+              <li>Телефон/ноутбук для онлайна</li>
+              <li>Метроном (приложение)</li>
+              <li>На электрогитаре: интерфейс/комбик — по возможности</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="btnrow">
+          <a class="btn primary" href="#contact">Записаться</a>
+          <a class="btn ghost" href="#price">Смотреть цены</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICE + CONTACT -->
+  <section id="price" class="section" style="min-height: 90vh;">
+    <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1513883049090-d0b7439799bf?auto=format&fit=crop&w=2400&q=80'); background-position:center 25%;"></div>
+
+    <div class="container content">
+      <div class="glass" style="max-width: 900px;">
+        <h2>Цены и запись</h2>
+        <p>Поставь свои цены ниже (сейчас — заглушка).</p>
+
+        <div class="grid" style="margin-top:14px;">
+          <div class="card col-6">
+            <b>Пробный урок</b>
+            <p class="small" style="margin-top:6px;">0 ₽ / 30 мин (или укажи цену)</p>
+          </div>
+          <div class="card col-6">
+            <b>Разовое занятие</b>
+            <p class="small" style="margin-top:6px;">XX € / XX ₽</p>
+          </div>
+          <div class="card col-12">
+            <b>Абонемент 4 занятия</b>
+            <p class="small" style="margin-top:6px;">выгоднее на ~10–15%</p>
+          </div>
+        </div>
+
+        <div id="contact" class="grid" style="margin-top:14px;">
+          <div class="card col-12">
+            <b>Записаться</b>
+            <p class="small" style="margin-top:6px;">
+              Напиши: уровень + цель + 2 песни/группы, которые нравятся — предложу план и формат.
+            </p>
+            <div class="btnrow">
+              <!-- ЗАМЕНИ ССЫЛКИ НА СВОИ -->
+              <a class="btn primary" href="https://t.me/USERNAME" target="_blank" rel="noopener">Telegram</a>
+              <a class="btn green" href="https://wa.me/491234567890" target="_blank" rel="noopener">WhatsApp</a>
+              <a class="btn ghost" href="#students">Видео учеников</a>
+            </div>
+          </div>
+        </div>
+
+        <p class="small" style="margin-top:10px;">© <span id="year"></span> Игорь. Все права защищены.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <div class="container">
+      <div class="footrow">
+        <div>Игорь • уроки гитары</div>
+        <div class="small">Рок • Металл • Акустика • Теория + практика</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
