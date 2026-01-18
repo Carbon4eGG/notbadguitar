@@ -278,13 +278,14 @@
     }
     .small{font-size: 12.5px; color: rgba(242,244,255,.65)}
 
-/* About-me layout */
+/* About-me layout: вертикально (Фото -> Подход) */
 .aboutWrap{
   display:grid;
-  grid-template-columns: 320px 1fr;
+  grid-template-columns: 1fr;
   gap: 14px;
   margin-top: 14px;
 }
+
 .photo{
   border-radius: 18px;
   overflow:hidden;
@@ -441,8 +442,9 @@
         Сейчас играю в кавер-группе <b>Blackwork</b>, а также развиваю мой музыкальный интернет-проект <b>After The Void</b>.
       </p>
 
-      <div class="aboutWrap">
-  <!-- ЛЕВАЯ КОЛОНКА: ФОТО (в карточке) -->
+<div class="aboutWrap">
+
+  <!-- ФОТО -->
   <div class="card">
     <b>Фото</b>
     <p class="small" style="margin-top:6px;">Сцена / студия / акустика — любые 3 кадра.</p>
@@ -469,13 +471,9 @@
           alt="Фото 3 (пример)" />
       </div>
     </div>
-
-    <p class="small" style="margin-top:10px;">
-      Хочешь — могу сделать подписи под фото (сцена / студия / проект).
-    </p>
   </div>
 
-  <!-- ПРАВАЯ КОЛОНКА: ТЕКСТ + НАВЫКИ -->
+  <!-- ПОДХОД (под фото) -->
   <div class="card">
     <b>Подход к занятиям</b>
     <ul>
@@ -497,7 +495,9 @@
       <a class="btn primary" href="#contact">Записаться</a>
     </div>
   </div>
+
 </div>
+
 
 
       <!-- AFTER THE VOID: треки -->
