@@ -415,5 +415,30 @@
       window.location.href = `mailto:${OWNER_EMAIL}?subject=${subject}&body=${body}`;
     });
   </script>
+
+<script>
+  // Отключить правый клик
+  document.addEventListener("contextmenu", (e) => e.preventDefault());
+
+  // Отключить выделение
+  document.addEventListener("selectstart", (e) => e.preventDefault());
+
+  // Блокировка некоторых горячих клавиш
+  document.addEventListener("keydown", (e) => {
+    const key = e.key.toLowerCase();
+
+    if (
+      (e.ctrlKey && ["c", "u", "s", "p"].includes(key)) || // copy / view source / save / print
+      (e.ctrlKey && e.shiftKey && ["i", "j", "c"].includes(key)) || // devtools
+      key === "f12"
+    ) {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    }
+  });
+</script>
+
+  
 </body>
 </html>
