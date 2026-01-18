@@ -277,6 +277,53 @@
       align-items:center;
     }
     .small{font-size: 12.5px; color: rgba(242,244,255,.65)}
+
+/* About-me layout */
+.aboutWrap{
+  display:grid;
+  grid-template-columns: 320px 1fr;
+  gap: 14px;
+  margin-top: 14px;
+}
+.photo{
+  border-radius: 18px;
+  overflow:hidden;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.03);
+  min-height: 360px;
+}
+.photo img{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  display:block;
+}
+.tracksGrid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 12px;
+}
+.track{
+  border-radius: 18px;
+  overflow:hidden;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.03);
+}
+.track iframe{
+  width:100%;
+  height: 152px;
+  border:0;
+  display:block;
+}
+@media (max-width: 900px){
+  .aboutWrap{grid-template-columns: 1fr;}
+  .photo{min-height: 300px;}
+  .tracksGrid{grid-template-columns: 1fr;}
+  .track iframe{height: 170px;}
+}
+
+    
   </style>
 </head>
 
@@ -337,55 +384,98 @@
     </div>
   </section>
 
-  <!-- ABOUT ME -->
-  <section id="aboutme" class="section" style="min-height: 95vh;">
-    <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=2400&q=80'); background-position:center 45%;"></div>
+ <!-- ABOUT ME -->
+<section id="aboutme" class="section" style="min-height: 95vh;">
+  <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=2400&q=80'); background-position:center 45%;"></div>
 
-    <div class="container content">
-      <div class="glass" style="max-width: 900px;">
-        <h2>Обо мне</h2>
-        <p>
-          Я Игорь. Играю на гитаре <b>с 2000 года</b>: рок, металл, акустика и песни под гитару.
-          На занятиях соединяем <b>практику и музыкальную теорию</b> — так ты быстрее понимаешь, что делаешь, и увереннее звучишь.
-        </p>
+  <div class="container content">
+    <div class="glass" style="max-width: 980px;">
+      <h2>Обо мне</h2>
+      <p>
+        Я Игорь. Играю на гитаре <b>с 2000 года</b>: рок, металл, акустика и песни под гитару.
+        У меня большой <b>сценический опыт</b>: ранее играл в группах <b>One Wave</b> и <b>Skeleton &amp; I</b>.
+        Сейчас играю в кавер-группе <b>Blackwork</b>, а также развиваю мой музыкальный интернет-проект <b>After The Void</b>.
+      </p>
 
-        <div class="grid">
-          <div class="card col-6">
-            <b>Что прокачиваем</b>
-            <ul>
-              <li>Постановка рук, атака и чистота</li>
-              <li>Ритм и стабильность под метроном</li>
-              <li>Аппликатуры, переходы, скорость (без зажимов)</li>
-              <li>Разбор песен и партий “как в оригинале”</li>
-            </ul>
-          </div>
+      <div class="aboutWrap">
+        <!-- Фото -->
+        <div class="card">
+          <b>Фото</b>
+          <p class="small" style="margin-top:6px;">Вставь своё фото (лучше с гитарой / со сцены).</p>
 
-          <div class="card col-6">
-            <b>Теория — это инструмент</b>
-            <ul>
-              <li>Интервалы, аккорды, тональности — на примерах из песен</li>
-              <li>Как строится гармония и почему “звучит”</li>
-              <li>Как подбирать аккорды и делать аранжировки</li>
-              <li>Чтобы меньше “угадывать” и больше понимать</li>
-            </ul>
-          </div>
-
-          <div class="card col-12">
-            <b>Стиль занятий</b>
-            <p class="small" style="margin-top:8px;">
-              Спокойно, по шагам, с опорой на музыку, которую тебе реально хочется играть.
-              Если цель — конкретный трек/партия — разбираем и параллельно закрываем “слабые места” техникой и теорией.
-            </p>
+          <div class="photo" style="margin-top:10px;">
+            <!-- ЗАМЕНИ src НА СВОЮ ФОТОГРАФИЮ -->
+            <img src="https://images.unsplash.com/photo-1520975958225-2c7a4f24e5b4?auto=format&fit=crop&w=1200&q=80"
+                 alt="Игорь с гитарой (пример)" />
           </div>
         </div>
 
-        <div class="btnrow">
-          <a class="btn primary" href="#students">Посмотреть, как играют ученики</a>
-          <a class="btn ghost" href="#format">Как проходят уроки</a>
+        <!-- Текст + навыки -->
+        <div class="card">
+          <b>Подход к занятиям</b>
+          <ul>
+            <li><b>Техника</b>: постановка, атака, чистота, скорость без зажимов</li>
+            <li><b>Ритм</b>: стабильность под метроном и чувство грува</li>
+            <li><b>Репертуар</b>: рок/металл партии, акустика, песни под гитару</li>
+            <li><b>Теория музыки</b>: на примерах из песен — чтобы понимать, что играешь, и быстрее учить материал</li>
+          </ul>
+
+          <div class="pills" style="margin-top:12px;">
+            <div class="pill">One Wave</div>
+            <div class="pill">Skeleton &amp; I</div>
+            <div class="pill">Blackwork</div>
+            <div class="pill">After The Void</div>
+          </div>
+
+          <div class="btnrow">
+            <a class="btn ghost" href="#students">Ученики играют</a>
+            <a class="btn primary" href="#contact">Записаться</a>
+          </div>
         </div>
       </div>
+
+      <!-- AFTER THE VOID: треки -->
+      <div class="grid" style="margin-top:14px;">
+        <div class="card col-12">
+          <b>After The Void — треки</b>
+          <p class="small" style="margin-top:6px;">
+            Здесь можно разместить пару треков проекта. Подойдёт Spotify / SoundCloud / Bandcamp / YouTube (embed).
+            Скажи где у тебя релизы — и я подставлю правильные плееры.
+          </p>
+
+          <div class="tracksGrid">
+            <!-- ПЛЕЕР 1 (пример: SoundCloud) -->
+            <div class="track">
+              <!-- ЗАМЕНИ src на свой embed -->
+              <iframe
+                scrolling="no"
+                allow="autoplay"
+                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/308596022&color=%237c5cff&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=true">
+              </iframe>
+            </div>
+
+            <!-- ПЛЕЕР 2 (пример: SoundCloud) -->
+            <div class="track">
+              <!-- ЗАМЕНИ src на свой embed -->
+              <iframe
+                scrolling="no"
+                allow="autoplay"
+                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/308596022&color=%2322c55e&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=true">
+              </iframe>
+            </div>
+          </div>
+
+          <div class="btnrow" style="margin-top:12px;">
+            <!-- ЕСЛИ ХОЧЕШЬ: ссылка на проект -->
+            <a class="btn ghost" href="#" target="_blank" rel="noopener">After The Void (ссылка)</a>
+          </div>
+        </div>
+      </div>
+
     </div>
-  </section>
+  </div>
+</section>
+
 
   <!-- STUDENTS PLAY -->
   <section id="students" class="section" style="min-height: 95vh;">
