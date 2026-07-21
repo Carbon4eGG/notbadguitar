@@ -18,55 +18,33 @@
   // 📨 НАСТРОЙКИ МЕССЕНДЖЕРОВ (БЛОК "НАПИСАТЬ")
   // ================================================
   const messengerRows = [
-    [
-      { 
-        label: "Telegram", 
-        url: "tg://resolve?domain=afterthevoid/", 
-        colorClass: "btn-telegram",
-        iconType: "png",
-        iconSrc: "icons/telegram.png"
-      },
-      { 
-        label: "WhatsApp", 
-        url: "whatsapp://send?phone=79997937906&text=/", 
-        colorClass: "btn-whatsapp",
-        iconType: "png",
-        iconSrc: "icons/whatsapp.png"
-      }
-    ],
-    [
-      { 
-        label: "Signal", 
-        url: "https://signal.me/#p/+79997937906", 
-        colorClass: "btn-signal",
-        iconType: "png",
-        iconSrc: "icons/signal.png"
-      },
-      { 
-        label: "Discord", 
-        url: "https://discord.com/invite/QRbjF3nj", 
-        colorClass: "btn-discord",
-        iconType: "png",
-        iconSrc: "icons/discord.png"
-      }
-    ],
-    [
-      { 
-        label: "Viber", 
-        url: "viber://chat?number=%2B79997937906/", 
-        colorClass: "btn-viber",
-        iconType: "png",
-        iconSrc: "icons/viber.png"
-      },
-      { 
-        label: "ВКонтакте", 
-        url: "https://vk.me/carbon4egg", 
-        colorClass: "btn-vk",
-        iconType: "png",
-        iconSrc: "icons/vk.png"
-      }
-    ]
-  ];
+  [
+    { 
+      label: "Telegram", 
+      url: "tg://resolve?domain=afterthevoid/", 
+      colorClass: "btn-telegram",
+      iconType: "png",
+      iconSrc: "icons/telegram.png",
+      fullWidth: true  // ← флаг для кнопки во всю ширину
+    }
+  ],
+  [
+    { 
+      label: "WhatsApp", 
+      url: "whatsapp://send?phone=79997937906&text=/", 
+      colorClass: "btn-whatsapp",
+      iconType: "png",
+      iconSrc: "icons/whatsapp.png"
+    },
+    { 
+      label: "ВКонтакте", 
+      url: "https://vk.me/carbon4egg", 
+      colorClass: "btn-vk",
+      iconType: "png",
+      iconSrc: "icons/vk.png"
+    }
+  ]
+];
 
   // ================================================
   // 🌐 НАСТРОЙКИ СОЦСЕТЕЙ (БЛОК "СОЦ СЕТИ")
@@ -79,14 +57,6 @@
     colorClass: "social-boost",
     iconType: "png",
     iconSrc: "icons/boosty.png"
-  },
-  { 
-    title: "Instagram", 
-    desc: "", 
-    url: "https://www.instagram.com/notbad_guitar/", 
-    colorClass: "social-instagram",
-    iconType: "png",
-    iconSrc: "icons/instagram.png"
   },
   { 
     title: "YouTube", 
@@ -261,54 +231,60 @@
 
   // ---------- УНИВЕРСАЛЬНАЯ ФУНКЦИЯ СОЗДАНИЯ КНОПОК ----------
   function createButtonWithIcon(config) {
-    const { url, label, colorClass, iconType, iconSrc, isFullWidth } = config;
+ const { url, label, colorClass, iconType, iconSrc, isFullWidth } = config;
+  
+  const a = document.createElement('a');
+  a.href = url;
+  a.target = '_blank';
+  a.rel = 'noopener';
+  a.className = isFullWidth ? `social-full-btn ${colorClass}` : `btn ${colorClass}`;
+  
+  if (iconType === 'png' && iconSrc) {
+    const img = document.createElement('img');
+    img.src = iconSrc;
+    img.alt = label;
+    img.className = 'btn-icon';
+    img.onerror = function() {
+      this.style.display = 'none';
+    };
     
-    const a = document.createElement('a');
-    a.href = url;
-    a.target = '_blank';
-    a.rel = 'noopener';
-    a.className = isFullWidth ? `social-full-btn ${colorClass}` : `btn ${colorClass}`;
+    a.appendChild(img);
     
-    if (iconType === 'png' && iconSrc) {
-      const img = document.createElement('img');
-      img.src = iconSrc;
-      img.alt = label;
-      img.className = 'btn-icon';
-      img.onerror = function() {
-        this.style.display = 'none';
-      };
-      
-      a.appendChild(img);
-      
-      if (!isFullWidth) {
-        a.appendChild(document.createTextNode(' ' + label));
-      }
+    // Для fullWidth кнопок добавляем текст через social-text
+    if (isFullWidth) {
+      const textDiv = document.createElement('div');
+      textDiv.className = 'social-text';
+      textDiv.innerHTML = `<span class="social-title">${label}</span>`;
+      a.appendChild(textDiv);
     } else {
-      a.innerHTML = `<i class="${iconSrc}"></i> ${label}`;
+      a.appendChild(document.createTextNode(' ' + label));
     }
-    
-    return a;
+  } else {
+    a.innerHTML = `<i class="${iconSrc}"></i> ${label}`;
   }
+  
+  return a;
+}
 
   // ---------- МЕССЕНДЖЕРЫ ----------
-  const messengerGrid = document.getElementById('messengerGrid');
-  messengerGrid.innerHTML = '';
-  messengerRows.forEach(row => {
-    const rowDiv = document.createElement('div');
-    rowDiv.className = 'messenger-row';
-    row.forEach(btn => {
-      const button = createButtonWithIcon({
-        url: btn.url,
-        label: btn.label,
-        colorClass: btn.colorClass,
-        iconType: btn.iconType || 'fontawesome',
-        iconSrc: btn.iconSrc || btn.icon,
-        isFullWidth: false
-      });
-      rowDiv.appendChild(button);
+const messengerGrid = document.getElementById('messengerGrid');
+messengerGrid.innerHTML = '';
+messengerRows.forEach(row => {
+  const rowDiv = document.createElement('div');
+  rowDiv.className = 'messenger-row';
+  row.forEach(btn => {
+    const button = createButtonWithIcon({
+      url: btn.url,
+      label: btn.label,
+      colorClass: btn.colorClass,
+      iconType: btn.iconType || 'fontawesome',
+      iconSrc: btn.iconSrc || btn.icon,
+      isFullWidth: false
     });
-    messengerGrid.appendChild(rowDiv);
+    rowDiv.appendChild(button);
   });
+  messengerGrid.appendChild(rowDiv);
+});
 
   // ---------- СОЦСЕТИ ----------
   const socialDiv = document.getElementById('socialLinks');
@@ -340,34 +316,86 @@
   });
 
   // ---------- АККОРДЕОНЫ ----------
-  function buildAccordion(containerId, items) {
-    const container = document.getElementById(containerId);
-    container.innerHTML = '';
-    items.forEach(item => {
-      const itemDiv = document.createElement('div');
-      itemDiv.className = 'accordion-item';
-      const headerBtn = document.createElement('button');
-      headerBtn.className = 'accordion-header';
-      headerBtn.innerHTML = `${item.question || item.title} <i class="fas fa-chevron-down"></i>`;
-      const contentDiv = document.createElement('div');
-      contentDiv.className = 'accordion-content';
-      contentDiv.textContent = item.answer;
-      
-      headerBtn.addEventListener('click', () => {
-        contentDiv.classList.toggle('open');
-        const icon = headerBtn.querySelector('i');
-        if (contentDiv.classList.contains('open')) {
-          icon.style.transform = 'rotate(180deg)';
-        } else {
-          icon.style.transform = 'rotate(0deg)';
-        }
-      });
-      itemDiv.appendChild(headerBtn);
-      itemDiv.appendChild(contentDiv);
-      container.appendChild(itemDiv);
-    });
-  }
+function buildAccordion(containerId, items) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = '';
+  items.forEach(item => {
+    const itemDiv = document.createElement('div');
+    itemDiv.className = 'accordion-item';
 
+    const headerBtn = document.createElement('button');
+    headerBtn.className = 'accordion-header';
+    headerBtn.innerHTML = `${item.question || item.title} <i class="fas fa-chevron-down"></i>`;
+
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'accordion-content';
+    
+    // Внутренняя обёртка с ОДИНАКОВЫМИ отступами со всех сторон
+    const innerDiv = document.createElement('div');
+    innerDiv.style.padding = '0.8rem';
+    innerDiv.style.whiteSpace = 'pre-wrap';
+    innerDiv.style.textAlign = 'left';
+    innerDiv.style.color = '#ffffff';
+    innerDiv.style.fontSize = '0.95rem';
+    innerDiv.style.lineHeight = '1.5';
+    innerDiv.style.textShadow = '0 1px 4px rgba(0, 0, 0, 0.3)';
+    innerDiv.textContent = item.answer;
+    contentDiv.appendChild(innerDiv);
+
+    // Убираем все лишние отступы у contentDiv
+    contentDiv.style.padding = '0';
+    contentDiv.style.margin = '0';
+    contentDiv.style.height = '0px';
+    contentDiv.style.overflow = 'hidden';
+    contentDiv.style.transition = 'height 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+    contentDiv.style.background = 'rgba(255, 255, 255, 0.05)';
+    contentDiv.style.borderRadius = '1rem 1rem 1rem 1rem';
+
+    headerBtn.addEventListener('click', () => {
+  const isOpen = contentDiv.classList.contains('open');
+  const icon = headerBtn.querySelector('i');
+  
+  if (isOpen) {
+    // Получаем текущую полную высоту содержимого
+    const currentHeight = innerDiv.scrollHeight;
+    
+    // Устанавливаем точную высоту
+    contentDiv.style.height = currentHeight + 'px';
+    
+    // Форсируем перерисовку
+    contentDiv.getBoundingClientRect();
+    
+    // Запускаем анимацию закрытия
+    contentDiv.classList.remove('open');
+    contentDiv.style.height = '0px';
+    icon.style.transform = 'rotate(0deg)';
+    
+    // После завершения анимации сбрасываем inline стиль
+    setTimeout(() => {
+      if (!contentDiv.classList.contains('open')) {
+        contentDiv.style.height = '0px';
+      }
+    }, 500); // 500ms соответствует transition: 0.5s
+  } else {
+    // Открываем
+    contentDiv.classList.add('open');
+    contentDiv.style.height = innerDiv.scrollHeight + 'px';
+    icon.style.transform = 'rotate(180deg)';
+    
+    // После анимации убираем фиксированную высоту
+    setTimeout(() => {
+      if (contentDiv.classList.contains('open')) {
+        contentDiv.style.height = 'auto';
+      }
+    }, 500);
+  }
+    });
+
+    itemDiv.appendChild(headerBtn);
+    itemDiv.appendChild(contentDiv);
+    container.appendChild(itemDiv);
+  });
+}
   buildAccordion('faqAccordion', faqItems);
   buildAccordion('rulesAccordion', rulesItems);
 
