@@ -89,11 +89,24 @@ h1 {
 /* ================================================ */
 /* 🔝 НАВИГАЦИОННЫЕ КНОПКИ-ЯКОРЯ */
 /* ================================================ */
+.nav-sticky-wrapper {
+  position: sticky;
+  top: 10px;
+  z-index: 100;
+  width: 100%;
+  max-width: 480px;
+  margin-bottom: 1.5rem;
+}
+
 .nav-buttons {
-  display: flex;
+ display: flex;
   gap: 0.5rem;
   width: 100%;
-  margin-bottom: 1.5rem;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 0.5rem;
+  border-radius: 2rem;
 }
 
 .nav-btn {
@@ -369,6 +382,8 @@ h1 {
   margin-bottom: 0;
   overflow: hidden;
 }
+
+
 
 /* ✨ Анимированный блик для кнопки BOOSTY */
 .social-boost::after {
