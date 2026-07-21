@@ -250,13 +250,8 @@
     
     a.appendChild(img);
     
-    // Для fullWidth кнопок добавляем текст через social-text
-    if (isFullWidth) {
-      const textDiv = document.createElement('div');
-      textDiv.className = 'social-text';
-      textDiv.innerHTML = `<span class="social-title">${label}</span>`;
-      a.appendChild(textDiv);
-    } else {
+    // Для fullWidth кнопок НЕ добавляем текст здесь — он добавится позже с desc
+    if (!isFullWidth) {
       a.appendChild(document.createTextNode(' ' + label));
     }
   } else {
@@ -299,23 +294,20 @@ socialNetworks.forEach(soc => {
     isFullWidth: true
   });
   
-  // Не добавляем текст повторно, если он уже есть в кнопке
-  if (!button.querySelector('.social-text')) {
-    const textDiv = document.createElement('div');
-    textDiv.className = 'social-text';
-    
-    if (soc.desc) {
-      textDiv.innerHTML = `
-        <span class="social-title">${soc.title}</span>
-        <span class="social-desc">${soc.desc}</span>
-      `;
-    } else {
-      textDiv.innerHTML = `<span class="social-title">${soc.title}</span>`;
-    }
-    
-    button.appendChild(textDiv);
+  // Всегда создаём текстовый блок заново
+  const textDiv = document.createElement('div');
+  textDiv.className = 'social-text';
+  
+  if (soc.desc) {
+    textDiv.innerHTML = `
+      <span class="social-title">${soc.title}</span>
+      <span class="social-desc">${soc.desc}</span>
+    `;
+  } else {
+    textDiv.innerHTML = `<span class="social-title">${soc.title}</span>`;
   }
   
+  button.appendChild(textDiv);
   socialDiv.appendChild(button);
 });
 
