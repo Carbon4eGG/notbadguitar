@@ -99,14 +99,21 @@ h1 {
 }
 
 .nav-buttons {
- display: flex;
+  display: flex;
   gap: 0.5rem;
   width: 100%;
+  background: transparent;
+  padding: 0.5rem;
+  border-radius: 2rem;
+  transition: background 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+.nav-buttons.scrolled {
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  padding: 0.5rem;
-  border-radius: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .nav-btn {
