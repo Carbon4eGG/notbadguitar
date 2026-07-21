@@ -287,18 +287,20 @@ messengerRows.forEach(row => {
 });
 
   // ---------- СОЦСЕТИ ----------
-  const socialDiv = document.getElementById('socialLinks');
-  socialDiv.innerHTML = '';
-  socialNetworks.forEach(soc => {
-    const button = createButtonWithIcon({
-      url: soc.url,
-      label: soc.title,
-      colorClass: soc.colorClass,
-      iconType: soc.iconType || 'fontawesome',
-      iconSrc: soc.iconSrc || soc.imgSrc,
-      isFullWidth: true
-    });
-    
+const socialDiv = document.getElementById('socialLinks');
+socialDiv.innerHTML = '';
+socialNetworks.forEach(soc => {
+  const button = createButtonWithIcon({
+    url: soc.url,
+    label: soc.title,
+    colorClass: soc.colorClass,
+    iconType: soc.iconType || 'fontawesome',
+    iconSrc: soc.iconSrc || soc.imgSrc,
+    isFullWidth: true
+  });
+  
+  // Не добавляем текст повторно, если он уже есть в кнопке
+  if (!button.querySelector('.social-text')) {
     const textDiv = document.createElement('div');
     textDiv.className = 'social-text';
     
@@ -312,8 +314,10 @@ messengerRows.forEach(row => {
     }
     
     button.appendChild(textDiv);
-    socialDiv.appendChild(button);
-  });
+  }
+  
+  socialDiv.appendChild(button);
+});
 
   // ---------- АККОРДЕОНЫ ----------
 function buildAccordion(containerId, items) {
