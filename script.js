@@ -456,5 +456,14 @@ document.addEventListener('dragstart', function(e) {
   return false;
 });
 
+// ---------- ЗАТЕМНЕНИЕ МЕНЮ ПРИ ПРОКРУТКЕ ----------
+const navButtons = document.querySelector('.nav-buttons');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) {
+    navButtons.classList.add('scrolled');
+  } else {
+    navButtons.classList.remove('scrolled');
+  }
+});
 
 })();
