@@ -462,10 +462,12 @@ window.addEventListener('scroll', () => {
   }
 });
 
-  // ---------- ЗАМЕНА ПРЕВЬЮ НА ПЛЕЕР ПРИ КЛИКЕ ----------
+// ---------- ЗАМЕНА ПРЕВЬЮ НА ПЛЕЕР ПРИ КЛИКЕ ----------
 document.querySelectorAll('.video-item[data-video]').forEach(item => {
   item.addEventListener('click', function() {
-    const videoUrl = this.getAttribute('data-video');
+    let videoUrl = this.getAttribute('data-video');
+    // Добавляем autoplay=1 для автоматического запуска
+    videoUrl = videoUrl.replace('autoplay=0', 'autoplay=1');
     this.innerHTML = `<iframe src="${videoUrl}" allowfullscreen></iframe>`;
     this.style.cursor = 'default';
   });
