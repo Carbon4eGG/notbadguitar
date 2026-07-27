@@ -466,6 +466,7 @@ window.addEventListener('scroll', () => {
 document.querySelectorAll('.video-item[data-video]').forEach(item => {
   item.addEventListener('click', function() {
     let videoUrl = this.getAttribute('data-video');
+    
     // Добавляем autoplay=1 для автоматического запуска
     videoUrl = videoUrl.replace('autoplay=0', 'autoplay=1');
     this.innerHTML = `<iframe src="${videoUrl}" allowfullscreen></iframe>`;
