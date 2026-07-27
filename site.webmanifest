@@ -1,6 +1,6 @@
 {
-  "name": "MyWebSite",
-  "short_name": "MySite",
+  "name": "Music4all",
+  "short_name": "Music4all",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
