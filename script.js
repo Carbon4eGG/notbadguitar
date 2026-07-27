@@ -462,4 +462,13 @@ window.addEventListener('scroll', () => {
   }
 });
 
+  // ---------- ЗАМЕНА ПРЕВЬЮ НА ПЛЕЕР ПРИ КЛИКЕ ----------
+document.querySelectorAll('.video-item[data-video]').forEach(item => {
+  item.addEventListener('click', function() {
+    const videoUrl = this.getAttribute('data-video');
+    this.innerHTML = `<iframe src="${videoUrl}" allowfullscreen></iframe>`;
+    this.style.cursor = 'default';
+  });
+});
+
 })();
