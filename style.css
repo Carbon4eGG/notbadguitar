@@ -884,10 +884,6 @@ body::after {
 /* 🔝 КНОПКА "НАВЕРХ" С ОТПЕЧАТКОМ ПАЛЬЦА */
 /* ================================================ */
 .scroll-to-top {
-  position: fixed;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%) translateY(20px);
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -901,20 +897,14 @@ body::after {
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  z-index: 99;
-  opacity: 0;
-  pointer-events: none;
+  margin: 1.5rem auto 1rem;
   box-shadow: 
     0 4px 20px rgba(0, 0, 0, 0.3),
     inset 0 0 20px rgba(255, 255, 255, 0.05);
   -webkit-tap-highlight-color: transparent;
   outline: none;
-}
-
-.scroll-to-top.visible {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-  pointer-events: auto;
+  position: relative;
+  z-index: 1;
 }
 
 .scroll-to-top:hover {
@@ -927,7 +917,7 @@ body::after {
 }
 
 .scroll-to-top:active {
-  transform: translateX(-50%) translateY(0) scale(0.95);
+  transform: scale(0.95);
   background: rgba(40, 40, 40, 0.9);
 }
 
@@ -936,6 +926,5 @@ body::after {
   .scroll-to-top {
     width: 55px;
     height: 55px;
-    bottom: 1.5rem;
   }
 }
