@@ -482,8 +482,8 @@ function createLightBeams() {
   container.className = 'light-beams-container';
   document.body.appendChild(container);
   
-  // Создаём 6 лучей
-  for (let i = 0; i < 6; i++) {
+  // Создаём 7 лучей
+  for (let i = 0; i < 7; i++) {
     const beam = document.createElement('div');
     beam.className = 'light-beam';
     container.appendChild(beam);
@@ -491,7 +491,7 @@ function createLightBeams() {
 }
 
 createLightBeams();
-
+  
 // ================================================
 // 🎵 ДОБАВЛЕНИЕ ЭКВАЛАЙЗЕРА В "МОЯ МУЗЫКА"
 // ================================================
