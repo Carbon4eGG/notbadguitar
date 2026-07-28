@@ -884,6 +884,7 @@ body::after {
 /* 🔝 КНОПКА "НАВЕРХ" С ОТПЕЧАТКОМ ПАЛЬЦА */
 /* ================================================ */
 .scroll-to-top {
+  display: block;
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -892,19 +893,20 @@ body::after {
   -webkit-backdrop-filter: blur(15px);
   border: 2px solid rgba(255, 255, 255, 0.25);
   color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
   margin: 1.5rem auto 1rem;
+  padding: 0;
   box-shadow: 
     0 4px 20px rgba(0, 0, 0, 0.3),
     inset 0 0 20px rgba(255, 255, 255, 0.05);
   -webkit-tap-highlight-color: transparent;
   outline: none;
-  position: relative;
-  z-index: 1;
+}
+
+.scroll-to-top svg {
+  display: block;
+  margin: 0 auto;
 }
 
 .scroll-to-top:hover {
