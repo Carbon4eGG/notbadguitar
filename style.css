@@ -704,7 +704,10 @@ iframe {
 /* ================================================ */
 
 /* --- 1. Плавающие частицы (искры) на фоне --- */
-.sparks-container {
+/* ================================================ */
+/* 🔦 СКОЛЬЗЯЩИЕ ЛУЧИ ПРОЖЕКТОРОВ */
+/* ================================================ */
+.light-beams-container {
   position: fixed;
   top: 0;
   left: 0;
@@ -712,22 +715,53 @@ iframe {
   height: 100%;
   pointer-events: none;
   z-index: 0;
+  overflow: hidden;
 }
 
-.spark {
+.light-beam {
   position: absolute;
-  background: white;
-  border-radius: 50%;
-  filter: blur(1px);
-  animation: floatUp 4s infinite ease-in;
+  width: 2px;
+  height: 120%;
+  background: linear-gradient(180deg, 
+    rgba(255,255,255,0) 0%, 
+    rgba(255,255,255,0.15) 30%, 
+    rgba(255,255,255,0.3) 50%, 
+    rgba(255,255,255,0.15) 70%, 
+    rgba(255,255,255,0) 100%);
+  filter: blur(2px);
+  animation: sweepBeam 8s infinite linear;
   opacity: 0;
+  transform-origin: top center;
 }
 
-@keyframes floatUp {
-  0% { transform: translateY(100vh) scale(0); opacity: 0; }
-  10% { opacity: 0.8; }
-  90% { opacity: 0; }
-  100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+.light-beam:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 8s; }
+.light-beam:nth-child(2) { left: 25%; animation-delay: 2s; animation-duration: 10s; }
+.light-beam:nth-child(3) { left: 40%; animation-delay: 4s; animation-duration: 9s; }
+.light-beam:nth-child(4) { left: 55%; animation-delay: 1s; animation-duration: 11s; }
+.light-beam:nth-child(5) { left: 70%; animation-delay: 3s; animation-duration: 7s; }
+.light-beam:nth-child(6) { left: 85%; animation-delay: 5s; animation-duration: 12s; }
+
+@keyframes sweepBeam {
+  0% { 
+    transform: rotate(-15deg) translateX(-100px);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.6;
+  }
+  40% {
+    opacity: 0.2;
+  }
+  60% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.1;
+  }
+  100% { 
+    transform: rotate(15deg) translateX(100px);
+    opacity: 0;
+  }
 }
 
 /* --- 2. Агрессивное появление блоков (Blur + вспышка) --- */
