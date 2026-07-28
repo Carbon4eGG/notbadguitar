@@ -221,7 +221,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     const targetElement = document.querySelector(targetId);
     
     if (targetElement) {
-      const offset = 40; // отступ в пикселях
+      const offset = 120; // отступ в пикселях
       const elementPosition = targetElement.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.scrollY - offset;
       
