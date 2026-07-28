@@ -474,4 +474,69 @@ document.querySelectorAll('.video-item[data-video]').forEach(item => {
   });
 });
 
+// ================================================
+// 🔥 СОЗДАНИЕ ПЛАВАЮЩИХ ЧАСТИЦ
+// ================================================
+function createSparks() {
+  const container = document.createElement('div');
+  container.className = 'sparks-container';
+  document.body.appendChild(container);
+  
+  setInterval(() => {
+    const spark = document.createElement('div');
+    spark.className = 'spark';
+    spark.style.left = Math.random() * 100 + '%';
+    spark.style.width = spark.style.height = (Math.random() * 3 + 1) + 'px';
+    spark.style.animationDuration = (Math.random() * 5 + 5) + 's';
+    container.appendChild(spark);
+    
+    setTimeout(() => spark.remove(), 10000);
+  }, 400);
+}
+
+createSparks();
+
+// ================================================
+// 🎵 ДОБАВЛЕНИЕ ЭКВАЛАЙЗЕРА В "МОЯ МУЗЫКА"
+// ================================================
+function addEqualizer() {
+  const musicSection = document.getElementById('myMusicContainer');
+  const eq = document.createElement('div');
+  eq.className = 'equalizer';
+  for (let i = 0; i < 8; i++) {
+    const bar = document.createElement('div');
+    bar.className = 'equalizer-bar';
+    eq.appendChild(bar);
+  }
+  musicSection.insertBefore(eq, musicSection.firstChild);
+}
+
+// Вызываем после загрузки музыки
+setTimeout(addEqualizer, 500);
+
+// ================================================
+// ✨ УСИЛЕННЫЙ OBSERVER ДЛЯ АНИМАЦИЙ
+// ================================================
+const fadeElements = document.querySelectorAll('.about-text, .prices-block, .messenger-grid, .video-grid, #socialLinks, .accordion, .offer-btn, #myMusicContainer');
+fadeElements.forEach(el => el.classList.add('fade-up'));
+
+document.querySelectorAll('.section-title').forEach(el => {
+  el.classList.add('fade-up');
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.1,
+  rootMargin: '0px 0px -20px 0px'
+});
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  
 })();
