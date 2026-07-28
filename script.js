@@ -534,5 +534,27 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
+
+  // ================================================
+// 🔝 КНОПКА "НАВЕРХ"
+// ================================================
+const scrollToTopBtn = document.getElementById('scrollToTop');
+
+// Показываем кнопку после прокрутки
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 400) {
+    scrollToTopBtn.classList.add('visible');
+  } else {
+    scrollToTopBtn.classList.remove('visible');
+  }
+});
+
+// Плавная прокрутка наверх при клике
+scrollToTopBtn.addEventListener('click', () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+});
   
 })();
