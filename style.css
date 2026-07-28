@@ -720,46 +720,57 @@ iframe {
 
 .light-beam {
   position: absolute;
-  width: 2px;
-  height: 120%;
+  width: 4px;
+  height: 130%;
   background: linear-gradient(180deg, 
-    rgba(255,255,255,0) 0%, 
-    rgba(255,255,255,0.15) 30%, 
-    rgba(255,255,255,0.3) 50%, 
-    rgba(255,255,255,0.15) 70%, 
-    rgba(255,255,255,0) 100%);
-  filter: blur(2px);
+    rgba(255, 255, 255, 0) 0%, 
+    rgba(255, 255, 255, 0.05) 15%,
+    rgba(255, 255, 255, 0.35) 40%, 
+    rgba(255, 255, 255, 0.5) 50%, 
+    rgba(255, 255, 255, 0.35) 60%,
+    rgba(255, 255, 255, 0.05) 85%,
+    rgba(255, 255, 255, 0) 100%);
+  filter: blur(8px);
+  box-shadow: 
+    0 0 20px rgba(255, 255, 255, 0.2),
+    0 0 40px rgba(255, 255, 255, 0.1),
+    0 0 80px rgba(255, 255, 255, 0.05);
   animation: sweepBeam 8s infinite linear;
   opacity: 0;
   transform-origin: top center;
+  border-radius: 50%;
 }
 
-.light-beam:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 8s; }
-.light-beam:nth-child(2) { left: 25%; animation-delay: 2s; animation-duration: 10s; }
-.light-beam:nth-child(3) { left: 40%; animation-delay: 4s; animation-duration: 9s; }
-.light-beam:nth-child(4) { left: 55%; animation-delay: 1s; animation-duration: 11s; }
-.light-beam:nth-child(5) { left: 70%; animation-delay: 3s; animation-duration: 7s; }
-.light-beam:nth-child(6) { left: 85%; animation-delay: 5s; animation-duration: 12s; }
+.light-beam:nth-child(1) { left: 5%; animation-delay: 0s; animation-duration: 9s; }
+.light-beam:nth-child(2) { left: 20%; animation-delay: 2s; animation-duration: 11s; }
+.light-beam:nth-child(3) { left: 35%; animation-delay: 4s; animation-duration: 8s; }
+.light-beam:nth-child(4) { left: 50%; animation-delay: 1s; animation-duration: 10s; }
+.light-beam:nth-child(5) { left: 65%; animation-delay: 3s; animation-duration: 12s; }
+.light-beam:nth-child(6) { left: 80%; animation-delay: 5s; animation-duration: 7s; }
+.light-beam:nth-child(7) { left: 90%; animation-delay: 6s; animation-duration: 9s; }
 
 @keyframes sweepBeam {
   0% { 
-    transform: rotate(-15deg) translateX(-100px);
+    transform: rotate(-10deg) translateX(-150px);
     opacity: 0;
   }
-  20% {
+  15% {
+    opacity: 0.7;
+  }
+  35% {
+    opacity: 0.4;
+  }
+  55% {
+    opacity: 0.9;
+  }
+  75% {
+    opacity: 0.3;
+  }
+  90% {
     opacity: 0.6;
   }
-  40% {
-    opacity: 0.2;
-  }
-  60% {
-    opacity: 0.8;
-  }
-  80% {
-    opacity: 0.1;
-  }
   100% { 
-    transform: rotate(15deg) translateX(100px);
+    transform: rotate(10deg) translateX(150px);
     opacity: 0;
   }
 }
