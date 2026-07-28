@@ -698,3 +698,149 @@ iframe {
     padding: 0.4rem 0.2rem;
   }
 }
+
+/* ================================================ */
+/* 🔥 РОК-АНИМАЦИИ ДЛЯ NOTBAD GUITAR */
+/* ================================================ */
+
+/* --- 1. Плавающие частицы (искры) на фоне --- */
+.sparks-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.spark {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  filter: blur(1px);
+  animation: floatUp 4s infinite ease-in;
+  opacity: 0;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(100vh) scale(0); opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0; }
+  100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+}
+
+/* --- 2. Агрессивное появление блоков (Blur + вспышка) --- */
+.fade-up {
+  opacity: 0;
+  filter: blur(15px);
+  transform: translateY(40px) scale(0.95);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              filter 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.fade-up.visible {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0) scale(1);
+}
+
+/* --- 3. Глитч-эффект при наведении на кнопки --- */
+.btn, .social-full-btn, .nav-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::after, .social-full-btn::after, .nav-btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.1) 40%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0.1) 60%,
+    transparent 70%
+  );
+  transform: translateX(-100%) rotate(45deg);
+  transition: 0.5s;
+}
+
+.btn:hover::after, .social-full-btn:hover::after, .nav-btn:hover::after {
+  transform: translateX(100%) rotate(45deg);
+}
+
+/* Небольшое дрожание при наведении */
+.btn:hover, .social-full-btn:hover {
+  animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateY(-2px) rotate(0deg); }
+  25% { transform: translateY(-2px) rotate(0.5deg); }
+  75% { transform: translateY(-2px) rotate(-0.5deg); }
+}
+
+/* --- 4. Анимированный эквалайзер (под музыкой) --- */
+.equalizer {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 40px;
+  margin: 0.5rem 0;
+  justify-content: center;
+}
+
+.equalizer-bar {
+  width: 4px;
+  background: #ffffff;
+  border-radius: 2px;
+  animation: equalize 1.2s infinite ease-in-out;
+}
+
+.equalizer-bar:nth-child(1) { height: 15px; animation-delay: 0s; }
+.equalizer-bar:nth-child(2) { height: 30px; animation-delay: 0.1s; }
+.equalizer-bar:nth-child(3) { height: 20px; animation-delay: 0.2s; }
+.equalizer-bar:nth-child(4) { height: 35px; animation-delay: 0.3s; }
+.equalizer-bar:nth-child(5) { height: 25px; animation-delay: 0.4s; }
+.equalizer-bar:nth-child(6) { height: 15px; animation-delay: 0.5s; }
+.equalizer-bar:nth-child(7) { height: 28px; animation-delay: 0.6s; }
+.equalizer-bar:nth-child(8) { height: 10px; animation-delay: 0.7s; }
+
+@keyframes equalize {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.4); }
+}
+
+/* --- 5. Параллакс-затемнение фона при скролле --- */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.4) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* --- 6. Анимированные заголовки --- */
+.section-title {
+  position: relative;
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+.section-title.visible {
+  animation: titleReveal 0.6s ease-out;
+}
+
+@keyframes titleReveal {
+  0% { letter-spacing: -2px; opacity: 0; }
+  100% { letter-spacing: -0.2px; opacity: 1; }
+}
