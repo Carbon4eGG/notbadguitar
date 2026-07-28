@@ -475,26 +475,22 @@ document.querySelectorAll('.video-item[data-video]').forEach(item => {
 });
 
 // ================================================
-// 🔥 СОЗДАНИЕ ПЛАВАЮЩИХ ЧАСТИЦ
+// 🔦 СОЗДАНИЕ ЛУЧЕЙ ПРОЖЕКТОРОВ
 // ================================================
-function createSparks() {
+function createLightBeams() {
   const container = document.createElement('div');
-  container.className = 'sparks-container';
+  container.className = 'light-beams-container';
   document.body.appendChild(container);
   
-  setInterval(() => {
-    const spark = document.createElement('div');
-    spark.className = 'spark';
-    spark.style.left = Math.random() * 100 + '%';
-    spark.style.width = spark.style.height = (Math.random() * 3 + 1) + 'px';
-    spark.style.animationDuration = (Math.random() * 5 + 5) + 's';
-    container.appendChild(spark);
-    
-    setTimeout(() => spark.remove(), 10000);
-  }, 400);
+  // Создаём 6 лучей
+  for (let i = 0; i < 6; i++) {
+    const beam = document.createElement('div');
+    beam.className = 'light-beam';
+    container.appendChild(beam);
+  }
 }
 
-createSparks();
+createLightBeams();
 
 // ================================================
 // 🎵 ДОБАВЛЕНИЕ ЭКВАЛАЙЗЕРА В "МОЯ МУЗЫКА"
