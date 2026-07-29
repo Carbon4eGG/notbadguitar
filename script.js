@@ -24,8 +24,7 @@
       url: "tg://resolve?domain=afterthevoid/", 
       colorClass: "btn-telegram",
       iconType: "png",
-      iconSrc: "icons/telegram.png",
-      fullWidth: true  // ← флаг для кнопки во всю ширину
+      iconSrc: "icons/telegram.png"
     }
   ],
   [
@@ -42,6 +41,15 @@
       colorClass: "btn-vk",
       iconType: "png",
       iconSrc: "icons/vk.png"
+    }
+  ],
+  [
+    { 
+      label: "eXpress", 
+      url: "ССЫЛКА_НА_EXPRESS", 
+      colorClass: "btn-express",
+      iconType: "png",
+      iconSrc: "icons/express.png"
     }
   ]
 ];
