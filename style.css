@@ -140,6 +140,8 @@ h1 {
   transform: translateY(-1px);
 }
 
+.btn-express { background: #0066FF; }
+
 /* Галерея с точками внутри */
 .gallery-wrapper {
   width: 100%;
