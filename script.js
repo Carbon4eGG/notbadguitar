@@ -42,15 +42,6 @@
       iconType: "png",
       iconSrc: "icons/vk.png"
     }
-  ],
-  [
-    { 
-      label: "eXpress", 
-      url: "expressms://chat?phone=79997937906", 
-      colorClass: "btn-express",
-      iconType: "png",
-      iconSrc: "icons/express.png"
-    }
   ]
 ];
 
