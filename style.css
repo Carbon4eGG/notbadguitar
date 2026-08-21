@@ -33,6 +33,91 @@ body::before {
   pointer-events: none;
 }
 
+
+/* ================================================ */
+/* 🔥 ЭКРАН ЗАГРУЗКИ */
+/* ================================================ */
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.preloader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.preloader-logo {
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 2rem;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* Светящаяся линия-струна */
+.preloader-line {
+  width: 200px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, white, transparent);
+  margin-bottom: 1.5rem;
+  animation: stringShine 1.2s ease-in-out infinite;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+}
+
+@keyframes stringShine {
+  0% { transform: scaleX(0.3); opacity: 0.2; }
+  50% { transform: scaleX(1); opacity: 1; }
+  100% { transform: scaleX(0.3); opacity: 0.2; }
+}
+
+/* Мини-эквалайзер */
+.preloader-eq {
+  display: flex;
+  gap: 5px;
+  height: 30px;
+  align-items: flex-end;
+}
+
+.preloader-eq span {
+  width: 5px;
+  background: white;
+  border-radius: 3px;
+  animation: eqBounce 0.8s infinite ease-in-out;
+}
+
+.preloader-eq span:nth-child(1) { height: 15px; animation-delay: 0s; }
+.preloader-eq span:nth-child(2) { height: 25px; animation-delay: 0.1s; }
+.preloader-eq span:nth-child(3) { height: 18px; animation-delay: 0.2s; }
+.preloader-eq span:nth-child(4) { height: 28px; animation-delay: 0.3s; }
+.preloader-eq span:nth-child(5) { height: 20px; animation-delay: 0.4s; }
+
+/*Конец CSS жкрана загрузки*/
+
+@keyframes eqBounce {
+  0%, 100% { transform: scaleY(0.5); }
+  50% { transform: scaleY(1); }
+}
+
 .taplink-card {
   max-width: 480px;
   width: 100%;
