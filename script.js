@@ -559,5 +559,15 @@ scrollToTopBtn.addEventListener('click', () => {
     behavior: 'smooth'
   });
 });
+
+  // ================================================
+// 🔥 ЭКРАН ЗАГРУЗКИ
+// ================================================
+window.addEventListener('load', () => {
+  const preloader = document.getElementById('preloader');
+  setTimeout(() => {
+    preloader.classList.add('hidden');
+  }, 1800); // 1.8 секунды
+});
   
 })();
