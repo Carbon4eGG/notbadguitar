@@ -175,7 +175,7 @@
     imgEl.src = galleryImages[currentIndex];
     // Убираем класс, чтобы фото плавно появилось
     imgEl.classList.remove('fading');
-  }, 400); // половина времени перехода
+  }, 800); // половина времени перехода
   
   const dots = document.querySelectorAll('.gallery-dot');
   dots.forEach((dot, i) => {
