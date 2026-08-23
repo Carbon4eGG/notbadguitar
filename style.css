@@ -267,7 +267,7 @@ h1 {
 
 .gallery img.fading {
   opacity: 0;
-  transform: scale(1.05);
+  transform: scale(1.01);
 }
 
 /* Точки навигации - просто точки без фона */
