@@ -166,26 +166,18 @@
   let galleryInterval;
 
   function updateGallery(index) {
-    if (galleryImages.length === 0) return;
+  if (galleryImages.length === 0) return;
   currentIndex = index;
+  imgEl.src = galleryImages[currentIndex];
   
-  imgNextEl.src = galleryImages[currentIndex];
-  
-  imgNextEl.onload = () => {
-    imgNextEl.style.opacity = '1';
-    imgEl.style.opacity = '0';
-    
-  setTimeout(() => {
-    // Меняем src, пока слой невидим
-    imgEl.src = galleryImages[currentIndex];
-    
-    // Принудительно применяем src
-    imgEl.getBoundingClientRect();
-    
-    // Теперь показываем
-    imgEl.style.opacity = '1';
-    imgNextEl.style.opacity = '0';
-  }, 600);
+  const dots = document.querySelectorAll('.gallery-dot');
+  dots.forEach((dot, i) => {
+    if (i === currentIndex) {
+      dot.classList.add('active');
+    } else {
+      dot.classList.remove('active');
+    }
+  });
   };
   
   const dots = document.querySelectorAll('.gallery-dot');
