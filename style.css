@@ -270,6 +270,7 @@ h1 {
 
 .gallery-img-next {
   opacity: 0;
+  filter: blur(12px);
 }
 
 
