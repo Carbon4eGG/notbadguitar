@@ -175,11 +175,17 @@
     imgNextEl.style.opacity = '1';
     imgEl.style.opacity = '0';
     
-    setTimeout(() => {
-      imgEl.src = galleryImages[currentIndex];
-      imgEl.style.opacity = '1';
-      imgNextEl.style.opacity = '0';
-    }, 600);
+  setTimeout(() => {
+    // Меняем src, пока слой невидим
+    imgEl.src = galleryImages[currentIndex];
+    
+    // Принудительно применяем src
+    imgEl.getBoundingClientRect();
+    
+    // Теперь показываем
+    imgEl.style.opacity = '1';
+    imgNextEl.style.opacity = '0';
+  }, 600);
   };
   
   const dots = document.querySelectorAll('.gallery-dot');
