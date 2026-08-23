@@ -165,18 +165,26 @@
   let galleryInterval;
 
   function updateGallery(index) {
-    if (galleryImages.length === 0) return;
-    currentIndex = index;
+  if (galleryImages.length === 0) return;
+  currentIndex = index;
+  
+  // Добавляем класс для плавного исчезновения
+  imgEl.classList.add('fading');
+  
+  setTimeout(() => {
     imgEl.src = galleryImages[currentIndex];
-    
-    const dots = document.querySelectorAll('.gallery-dot');
-    dots.forEach((dot, i) => {
-      if (i === currentIndex) {
-        dot.classList.add('active');
-      } else {
-        dot.classList.remove('active');
-      }
-    });
+    // Убираем класс, чтобы фото плавно появилось
+    imgEl.classList.remove('fading');
+  }, 400); // половина времени перехода
+  
+  const dots = document.querySelectorAll('.gallery-dot');
+  dots.forEach((dot, i) => {
+    if (i === currentIndex) {
+      dot.classList.add('active');
+    } else {
+      dot.classList.remove('active');
+    }
+  });
   }
 
   function renderDots() {
