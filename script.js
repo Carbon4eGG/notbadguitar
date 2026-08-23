@@ -160,6 +160,7 @@
 
   // ---------- ГАЛЕРЕЯ ----------
   const imgEl = document.getElementById('galleryImage');
+  const imgNextEl = document.getElementById('galleryImageNext');
   const dotsContainer = document.getElementById('galleryDots');
   let currentIndex = 0;
   let galleryInterval;
@@ -168,14 +169,21 @@
   if (galleryImages.length === 0) return;
   currentIndex = index;
   
-  // Добавляем класс для плавного исчезновения
-  imgEl.classList.add('fading');
+  // Загружаем новое фото в скрытый слой
+  imgNextEl.src = galleryImages[currentIndex];
   
-  setTimeout(() => {
-    imgEl.src = galleryImages[currentIndex];
-    // Убираем класс, чтобы фото плавно появилось
-    imgEl.classList.remove('fading');
-  }, 800); // половина времени перехода
+  // Когда новое фото загрузится — плавно показываем его
+  imgNextEl.onload = () => {
+    imgNextEl.style.opacity = '1';
+    imgEl.style.opacity = '0';
+    
+    // После перехода меняем слои местами
+    setTimeout(() => {
+      imgEl.src = galleryImages[currentIndex];
+      imgEl.style.opacity = '1';
+      imgNextEl.style.opacity = '0';
+    }, 1200); // должно совпадать с transition
+  };
   
   const dots = document.querySelectorAll('.gallery-dot');
   dots.forEach((dot, i) => {
