@@ -265,11 +265,6 @@ h1 {
   transition: opacity 0.4s ease;
 }
 
-.gallery-img-next {
-  opacity: 0;
-}
-
-
 /* Точки навигации - просто точки без фона */
 .gallery-dots {
   position: absolute;
