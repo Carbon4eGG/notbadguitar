@@ -12,7 +12,7 @@
     "image/gallery/notbadguitar_gallery_7.jpg",
     "image/gallery/notbadguitar_gallery_8.jpg"
   ];
-  const gallerySpeed = 2000;
+  const gallerySpeed = 4000;
 
   // ================================================
   // 📨 НАСТРОЙКИ МЕССЕНДЖЕРОВ (БЛОК "НАПИСАТЬ")
