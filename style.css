@@ -262,7 +262,12 @@ h1 {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.gallery img.fading {
+  opacity: 0;
+  transform: scale(1.05);
 }
 
 /* Точки навигации - просто точки без фона */
