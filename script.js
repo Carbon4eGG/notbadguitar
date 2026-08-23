@@ -173,17 +173,21 @@
   imgNextEl.src = galleryImages[currentIndex];
   
   // Когда новое фото загрузится — плавно показываем его
-  imgNextEl.onload = () => {
-    imgNextEl.style.opacity = '1';
-    imgEl.style.opacity = '0';
-    
-    // После перехода меняем слои местами
-    setTimeout(() => {
-      imgEl.src = galleryImages[currentIndex];
-      imgEl.style.opacity = '1';
-      imgNextEl.style.opacity = '0';
-    }, 1200); // должно совпадать с transition
-  };
+imgNextEl.onload = () => {
+  imgNextEl.style.opacity = '1';
+  imgNextEl.style.filter = 'blur(0)';
+  
+  imgEl.style.opacity = '0';
+  imgEl.style.filter = 'blur(12px)';
+  
+  setTimeout(() => {
+    imgEl.src = galleryImages[currentIndex];
+    imgEl.style.opacity = '1';
+    imgEl.style.filter = 'blur(0)';
+    imgNextEl.style.opacity = '0';
+    imgNextEl.style.filter = 'blur(12px)';
+  }, 1200);
+};
   
   const dots = document.querySelectorAll('.gallery-dot');
   dots.forEach((dot, i) => {
