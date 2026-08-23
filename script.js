@@ -165,18 +165,39 @@
   let galleryInterval;
 
   function updateGallery(index) {
-    if (galleryImages.length === 0) return;
-    currentIndex = index;
-    imgEl.src = galleryImages[currentIndex];
-
-    const dots = document.querySelectorAll('.gallery-dot');
-    dots.forEach((dot, i) => {
-      if (i === currentIndex) {
-        dot.classList.add('active');
-      } else {
-        dot.classList.remove('active');
-      }
-    });
+    
+ if (galleryImages.length === 0) return;
+  currentIndex = index;
+  
+  const slider = document.getElementById('gallerySlider');
+  const nextImg = document.getElementById('galleryImageNext');
+  
+  // Загружаем новое фото во второй слот
+  nextImg.src = galleryImages[currentIndex];
+  
+  nextImg.onload = () => {
+    // Сдвигаем слайдер влево
+    slider.style.transform = 'translateX(-100%)';
+    
+    // После анимации меняем src и сбрасываем позицию
+    setTimeout(() => {
+      const mainImg = document.getElementById('galleryImage');
+      mainImg.src = galleryImages[currentIndex];
+      slider.style.transition = 'none';
+      slider.style.transform = 'translateX(0)';
+      
+      // Возвращаем transition
+      setTimeout(() => {
+        slider.style.transition = 'transform 0.6s ease-in-out';
+      }, 50);
+    }, 600);
+  };
+  
+  // Обновляем точки
+  const dots = document.querySelectorAll('.gallery-dot');
+  dots.forEach((dot, i) => {
+    dot.classList.toggle('active', i === currentIndex);
+  });
   }
 
   function renderDots() {
