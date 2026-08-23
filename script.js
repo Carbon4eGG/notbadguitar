@@ -179,10 +179,6 @@ imgNextEl.onload = () => {
   // Старое фото пока остаётся чётким
   imgEl.style.opacity = '0';
   
-  // За 150мс до конца перехода добавляем размытие
-  setTimeout(() => {
-    imgEl.style.filter = 'blur(4px)';
-  }, 450);
   
   setTimeout(() => {
     imgEl.src = galleryImages[currentIndex];
