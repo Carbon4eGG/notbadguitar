@@ -166,26 +166,21 @@
   let galleryInterval;
 
   function updateGallery(index) {
-  if (galleryImages.length === 0) return;
+    if (galleryImages.length === 0) return;
   currentIndex = index;
   
-  // Загружаем новое фото в скрытый слой
   imgNextEl.src = galleryImages[currentIndex];
   
-  // Когда новое фото загрузится — плавно показываем его
-imgNextEl.onload = () => {
-  imgNextEl.style.opacity = '1';
+  imgNextEl.onload = () => {
+    imgNextEl.style.opacity = '1';
+    imgEl.style.opacity = '0';
     
-  // Старое фото пока остаётся чётким
-  imgEl.style.opacity = '0';
-  
-  
-  setTimeout(() => {
-    imgEl.src = galleryImages[currentIndex];
-    imgEl.style.opacity = '1';
-    imgNextEl.style.opacity = '0';
-  }, 600);
-};
+    setTimeout(() => {
+      imgEl.src = galleryImages[currentIndex];
+      imgEl.style.opacity = '1';
+      imgNextEl.style.opacity = '0';
+    }, 600);
+  };
   
   const dots = document.querySelectorAll('.gallery-dot');
   dots.forEach((dot, i) => {
