@@ -12,7 +12,7 @@
     "image/gallery/notbadguitar_gallery_7.jpg",
     "image/gallery/notbadguitar_gallery_8.jpg"
   ];
-  const gallerySpeed = 4000;
+  const gallerySpeed = 2000;
 
   // ================================================
   // 📨 НАСТРОЙКИ МЕССЕНДЖЕРОВ (БЛОК "НАПИСАТЬ")
@@ -165,34 +165,24 @@
   let galleryInterval;
 
   function updateGallery(index) {
-  if (galleryImages.length === 0) return;
-  currentIndex = index;
-  imgEl.src = galleryImages[currentIndex];
-  
-  const dots = document.querySelectorAll('.gallery-dot');
-  dots.forEach((dot, i) => {
-    if (i === currentIndex) {
-      dot.classList.add('active');
-    } else {
-      dot.classList.remove('active');
-    }
-  });
-  };
-  
-  const dots = document.querySelectorAll('.gallery-dot');
-  dots.forEach((dot, i) => {
-    if (i === currentIndex) {
-      dot.classList.add('active');
-    } else {
-      dot.classList.remove('active');
-    }
-  });
+    if (galleryImages.length === 0) return;
+    currentIndex = index;
+    imgEl.src = galleryImages[currentIndex];
+
+    const dots = document.querySelectorAll('.gallery-dot');
+    dots.forEach((dot, i) => {
+      if (i === currentIndex) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+      }
+    });
   }
 
   function renderDots() {
     dotsContainer.innerHTML = '';
     if (galleryImages.length <= 1) return;
-    
+
     galleryImages.forEach((_, index) => {
       const dot = document.createElement('button');
       dot.className = 'gallery-dot';
@@ -228,12 +218,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     e.preventDefault();
     const targetId = this.getAttribute('href');
     const targetElement = document.querySelector(targetId);
-    
+
     if (targetElement) {
       const offset = 120; // отступ в пикселях
       const elementPosition = targetElement.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.scrollY - offset;
-      
+
       window.scrollTo({
         top: offsetPosition,
         behavior: 'smooth'
@@ -245,13 +235,13 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   // ---------- УНИВЕРСАЛЬНАЯ ФУНКЦИЯ СОЗДАНИЯ КНОПОК ----------
   function createButtonWithIcon(config) {
  const { url, label, colorClass, iconType, iconSrc, isFullWidth } = config;
-  
+
   const a = document.createElement('a');
   a.href = url;
   a.target = '_blank';
   a.rel = 'noopener';
   a.className = isFullWidth ? `social-full-btn ${colorClass}` : `btn ${colorClass}`;
-  
+
   if (iconType === 'png' && iconSrc) {
     const img = document.createElement('img');
     img.src = iconSrc;
@@ -260,9 +250,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     img.onerror = function() {
       this.style.display = 'none';
     };
-    
+
     a.appendChild(img);
-    
+
     // Для fullWidth кнопок НЕ добавляем текст здесь — он добавится позже с desc
     if (!isFullWidth) {
       a.appendChild(document.createTextNode(' ' + label));
@@ -270,7 +260,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   } else {
     a.innerHTML = `<i class="${iconSrc}"></i> ${label}`;
   }
-  
+
   return a;
 }
 
@@ -306,11 +296,11 @@ socialNetworks.forEach(soc => {
     iconSrc: soc.iconSrc || soc.imgSrc,
     isFullWidth: true
   });
-  
+
   // Всегда создаём текстовый блок заново
   const textDiv = document.createElement('div');
   textDiv.className = 'social-text';
-  
+
   if (soc.desc) {
     textDiv.innerHTML = `
       <span class="social-title">${soc.title}</span>
@@ -319,7 +309,7 @@ socialNetworks.forEach(soc => {
   } else {
     textDiv.innerHTML = `<span class="social-title">${soc.title}</span>`;
   }
-  
+
   button.appendChild(textDiv);
   socialDiv.appendChild(button);
 });
@@ -338,7 +328,7 @@ function buildAccordion(containerId, items) {
 
     const contentDiv = document.createElement('div');
     contentDiv.className = 'accordion-content';
-    
+
     // Внутренняя обёртка с ОДИНАКОВЫМИ отступами со всех сторон
     const innerDiv = document.createElement('div');
     innerDiv.style.padding = '0.8rem';
@@ -363,22 +353,22 @@ function buildAccordion(containerId, items) {
     headerBtn.addEventListener('click', () => {
   const isOpen = contentDiv.classList.contains('open');
   const icon = headerBtn.querySelector('i');
-  
+
   if (isOpen) {
     // Получаем текущую полную высоту содержимого
     const currentHeight = innerDiv.scrollHeight;
-    
+
     // Устанавливаем точную высоту
     contentDiv.style.height = currentHeight + 'px';
-    
+
     // Форсируем перерисовку
     contentDiv.getBoundingClientRect();
-    
+
     // Запускаем анимацию закрытия
     contentDiv.classList.remove('open');
     contentDiv.style.height = '0px';
     icon.style.transform = 'rotate(0deg)';
-    
+
     // После завершения анимации сбрасываем inline стиль
     setTimeout(() => {
       if (!contentDiv.classList.contains('open')) {
@@ -390,7 +380,7 @@ function buildAccordion(containerId, items) {
     contentDiv.classList.add('open');
     contentDiv.style.height = innerDiv.scrollHeight + 'px';
     icon.style.transform = 'rotate(180deg)';
-    
+
     // После анимации убираем фиксированную высоту
     setTimeout(() => {
       if (contentDiv.classList.contains('open')) {
@@ -479,7 +469,7 @@ window.addEventListener('scroll', () => {
 document.querySelectorAll('.video-item[data-video]').forEach(item => {
   item.addEventListener('click', function() {
     let videoUrl = this.getAttribute('data-video');
-    
+
     // Добавляем autoplay=1 для автоматического запуска
     videoUrl = videoUrl.replace('autoplay=0', 'autoplay=1');
     this.innerHTML = `<iframe src="${videoUrl}" allowfullscreen></iframe>`;
@@ -494,7 +484,7 @@ function createLightBeams() {
   const container = document.createElement('div');
   container.className = 'light-beams-container';
   document.body.appendChild(container);
-  
+
   // Создаём 7 лучей
   for (let i = 0; i < 7; i++) {
     const beam = document.createElement('div');
@@ -504,7 +494,7 @@ function createLightBeams() {
 }
 
 createLightBeams();
-  
+
 // ================================================
 // 🎵 ДОБАВЛЕНИЕ ЭКВАЛАЙЗЕРА В "МОЯ МУЗЫКА"
 // ================================================
@@ -579,5 +569,5 @@ window.addEventListener('load', () => {
     preloader.classList.add('hidden');
   }, 1800); // 1.8 секунды
 });
-  
+
 })();
