@@ -160,7 +160,6 @@
 
   // ---------- ГАЛЕРЕЯ ----------
   const imgEl = document.getElementById('galleryImage');
-  const imgNextEl = document.getElementById('galleryImageNext');
   const dotsContainer = document.getElementById('galleryDots');
   let currentIndex = 0;
   let galleryInterval;
