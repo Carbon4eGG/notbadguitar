@@ -177,16 +177,20 @@ imgNextEl.onload = () => {
   imgNextEl.style.opacity = '1';
   imgNextEl.style.filter = 'blur(0)';
   
+  // Старое фото пока остаётся чётким
   imgEl.style.opacity = '0';
-  imgEl.style.filter = 'blur(12px)';
+  
+  // За 150мс до конца перехода добавляем размытие
+  setTimeout(() => {
+    imgEl.style.filter = 'blur(4px)';
+  }, 450);
   
   setTimeout(() => {
     imgEl.src = galleryImages[currentIndex];
     imgEl.style.opacity = '1';
     imgEl.style.filter = 'blur(0)';
     imgNextEl.style.opacity = '0';
-    imgNextEl.style.filter = 'blur(12px)';
-  }, 1200);
+  }, 600);
 };
   
   const dots = document.querySelectorAll('.gallery-dot');
