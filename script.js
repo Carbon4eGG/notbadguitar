@@ -12,7 +12,7 @@
     "image/gallery/notbadguitar_gallery_7.jpg",
     "image/gallery/notbadguitar_gallery_8.jpg"
   ];
-  const gallerySpeed = 2000;
+  const gallerySpeed = 3000;
 
   // ================================================
   // 📨 НАСТРОЙКИ МЕССЕНДЖЕРОВ (БЛОК "НАПИСАТЬ")
@@ -188,9 +188,9 @@
       
       // Возвращаем transition
       setTimeout(() => {
-        slider.style.transition = 'transform 0.6s ease-in-out';
+        slider.style.transition = 'transform 0.9s ease-in-out';
       }, 50);
-    }, 600);
+    }, 1000);
   };
   
   // Обновляем точки
